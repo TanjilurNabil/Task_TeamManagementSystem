@@ -14,7 +14,7 @@ COPY Task_TeamManage.Application/. Task_TeamManage.Application/
 COPY Task_TeamManage.Domain/. Task_TeamManage.Domain/
 COPY Task_TeamManage.Infrastructure/. Task_TeamManage.Infrastructure/
 
-WORKDIR /app/Web
+WORKDIR /app/Task_TeamManage.Api
 RUN dotnet publish -c Release -o /app/out
 
 # Build runtime image
@@ -24,4 +24,4 @@ EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 ENV ASPNETCORE_ENVIRONMENT=Development
 COPY --from=build /app/out .
-ENTRYPOINT ["dotnet", "Task_TeamManage.dll"]
+ENTRYPOINT ["dotnet", "Task_TeamManage.Api.dll"]
