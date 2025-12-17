@@ -8,6 +8,7 @@ using Microsoft.Identity.Client;
 using System.Security.Claims;
 using Task_TeamManage.Application.DTOs.Tasks;
 using Task_TeamManage.Application.Features.Tasks.Commands.CreateTask;
+using Task_TeamManage.Application.Features.Tasks.Commands.UpdateTaskStatus;
 using Task_TeamManage.Application.Features.Tasks.Queries.GetTaskById;
 
 namespace Task_TeamManage.Api.Controllers
@@ -50,6 +51,14 @@ namespace Task_TeamManage.Api.Controllers
         {
             var task = await _mediator.Send(new GetTaskByIdQuery(id));
             return Ok(task);
+        }
+
+        [HttpPut(ApiEndpoints.Tasks.Update)]
+        [Authorize(Roles = "Manager")]
+        public async Task<IActionResult> UpdateStatus(Guid id, TaskStatus status)
+        {
+            var success = await _mediator.Send(new UpdateTaskStatusCommand(id, status));
+            return success ? NoContent() : NotFound();
         }
     }
 }
