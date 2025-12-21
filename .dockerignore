@@ -1,0 +1,15 @@
+**/bin
+**/obj
+**/.dockerignore
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/*.swp
+**/*.swo
+*.db
+*.userprefs
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
